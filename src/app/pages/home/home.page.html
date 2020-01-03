@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="welcome-card">
+          <img src="/assets/shapes.svg" alt="" />
+          <ion-card-header>
+            <ion-card-subtitle>Get Started</ion-card-subtitle>
+            <ion-card-title>Welcome to Ionic</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>
+              Now that your app has been created, you'll want to start building out features
+              and components. Check out some of the resources below for next steps.
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+
+        <ion-list lines="inset">
+          <ion-list-header>
+            <ion-label>Resources</ion-label>
+          </ion-list-header>
+          <ion-item href="https://ionicframework.com/docs/" detail color="secondary">
+            <ion-icon slot="start" color="medium" name="book"></ion-icon>
+            <ion-label>Ionic Documentation</ion-label>
+          </ion-item>
+          <ion-item href="https://ionicframework.com/docs/building/scaffolding" color="success">
+            <ion-icon slot="start" color="medium" name="build"></ion-icon>
+            <ion-label>Scaffold Out Your App</ion-label>
+          </ion-item>
+          <ion-item href="https://ionicframework.com/docs/layout/structure">
+            <ion-icon slot="start" color="medium" name="grid"></ion-icon>
+            <ion-label>Change Your App Layout</ion-label>
+          </ion-item>
+          <ion-item href="https://ionicframework.com/docs/theming/basics">
+            <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
+            <ion-label>Theme Your App</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" (click)="clickCounter()">Primary <ion-icon slot="start" name="add"></ion-icon>
+        </ion-button>
+        Click counter: {{ clickCount }}
+
+        <ion-item>
+          <ion-label position="floating">Floating Label</ion-label>
+          <ion-input type="text" placeholder="Enter Input" [(ngModel)]="myModel"></ion-input>
+        </ion-item>
+
+        <h1>input value is: {{ myModel }}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>Conditional Template:</h3>
+        <ng-template [ngIf]="clickCount < 4">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Title</ion-card-title>
+              <ion-card-subtitle>Counter is less than 4</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, magnam, incidunt? Nisi ducimus in facilis est sunt laboriosam, aspernatur nemo!</p>
+            </ion-card-content>
+          </ion-card>
+        </ng-template>
+        <ng-template [ngIf]="clickCount >= 4 && clickCount <= 8">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Title</ion-card-title>
+              <ion-card-subtitle>Counter is between 4 and 8</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, magnam, incidunt? Nisi ducimus in facilis est sunt laboriosam, aspernatur nemo!</p>
+            </ion-card-content>
+          </ion-card>
+        </ng-template>
+        <ng-template [ngIf]="clickCount > 8">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Title</ion-card-title>
+              <ion-card-subtitle>Counter is more than 8</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, magnam, incidunt? Nisi ducimus in facilis est sunt laboriosam, aspernatur nemo!</p>
+            </ion-card-content>
+          </ion-card>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

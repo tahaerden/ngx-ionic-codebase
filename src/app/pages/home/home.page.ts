@@ -7,6 +7,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  clickCount = 0;
+  myModel = 'teha';
+
+  constructor() {
+  }
+
+  clickCounter() {
+    this.clickCount += 1;
+  }
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter');
+  }
 
 }

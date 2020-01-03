@@ -1,11 +1,11 @@
 {
   "name": "test-angular-ionic",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Taha Erden",
+  "homepage": "https://tahaerden.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --no-live-reload",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -54,5 +54,5 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project"
+  "description": "Test project for Ionic + Angular"
 }
