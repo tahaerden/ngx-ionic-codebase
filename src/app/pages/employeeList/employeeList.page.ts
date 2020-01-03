@@ -10,18 +10,7 @@ import { Employee } from '@models/employee';
 export class EmployeeListPage implements OnInit {
   // employees: Employee[] = [];
   employees = [];
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
+  loadingDT = true;
   constructor(private api: ApiService) { }
   // Delete employee
   // deleteEmployee(id: number) {
@@ -36,18 +25,13 @@ export class EmployeeListPage implements OnInit {
       .subscribe((data: Employee[]) => {
         this.employees = data.map(
           (emp: any) => {
-          emp.icon = this.icons[Math.floor(Math.random() * this.icons.length)];
-          return new Employee(emp);
-        }
+            return new Employee(emp);
+          }
         );
+        this.loadingDT = false;
       });
   }
   ngOnInit() {
-    // this.employees = this.getEmployees();
     this.getEmployees();
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
 }

@@ -26,7 +26,25 @@
       <td>{{ asd.icon }}</td>
     </tr>
   </table> -->
-  <ion-list>
+  <ngx-datatable
+    class="material striped"
+    columnMode="force"
+    [loadingIndicator]="loadingDT"
+    headerHeight="50"
+    footerHeight="50"
+    rowHeight="auto"
+    [rows]="employees"
+    [limit]="25"
+    [columns]="
+    [
+    { prop: 'name', name: 'Name' },
+    { prop: 'salary', name: 'Salary' },
+    { prop: 'id', name: 'ID' },
+    { prop: 'age', name: 'age' }
+    ]"
+  >
+  </ngx-datatable>
+  <!-- <ion-list>
     <ion-item *ngFor="let employee of employees">
       <ion-icon [name]="employee.icon" slot="start"></ion-icon>
       ({{employee.id}})
@@ -35,5 +53,5 @@
         {{employee.salary}}
       </div>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>
