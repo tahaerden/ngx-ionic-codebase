@@ -9,8 +9,8 @@ import { Employee } from '@models/employee';
 })
 export class EmployeeListPage implements OnInit {
   // employees: Employee[] = [];
-  employees = [];
-  loadingDT = true;
+  employees: Employee[];
+  selected = [];
   constructor(private api: ApiService) { }
   // Delete employee
   // deleteEmployee(id: number) {
@@ -28,9 +28,9 @@ export class EmployeeListPage implements OnInit {
             return new Employee(emp);
           }
         );
-        this.loadingDT = false;
       });
   }
+
   ngOnInit() {
     this.getEmployees();
   }

@@ -10,48 +10,41 @@
 </ion-header>
 
 <ion-content>
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>salary</th>
-        <th>icon</th>
-      </tr>
-    </thead>
-    <tr *ngFor="let asd of employees">
-      <td>{{ asd.id }}</td>
-      <td>{{ asd.name }}</td>
-      <td>{{ asd.salary }}</td>
-      <td>{{ asd.icon }}</td>
-    </tr>
-  </table> -->
-  <ngx-datatable
-    class="material striped"
-    columnMode="force"
-    [loadingIndicator]="loadingDT"
-    headerHeight="50"
-    footerHeight="50"
-    rowHeight="auto"
-    [rows]="employees"
-    [limit]="25"
-    [columns]="
-    [
-    { prop: 'name', name: 'Name' },
-    { prop: 'salary', name: 'Salary' },
-    { prop: 'id', name: 'ID' },
-    { prop: 'age', name: 'age' }
-    ]"
-  >
-  </ngx-datatable>
-  <!-- <ion-list>
-    <ion-item *ngFor="let employee of employees">
-      <ion-icon [name]="employee.icon" slot="start"></ion-icon>
-      ({{employee.id}})
-      {{employee.name}}
-      <div class="item-note" slot="end">
-        {{employee.salary}}
-      </div>
-    </ion-item>
-  </ion-list> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ngx-datatable
+          class="material striped"
+          columnMode="force"
+          [loadingIndicator]="!employees"
+          headerHeight="50"
+          footerHeight="50"
+          rowHeight="auto"
+          [rows]="employees"
+          [limit]="10"
+          [columns]="
+              [
+              { prop: 'id', name: 'ID' },
+              { prop: 'name', name: 'Name' },
+              { prop: 'salary', name: 'Salary' }
+              ]"
+          [selected]="selected"
+          selectionType="single"
+        >
+        </ngx-datatable>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ul>
+            <li *ngFor="let sel of selected">
+              <strong>Name:</strong> {{ sel.name }}
+              <br><strong>Salary:</strong> {{ sel.salary }}
+              <br><strong>Age:</strong> {{ sel.age }}
+            </li>
+            <li *ngIf="!selected.length">No Selections</li>
+          </ul>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
