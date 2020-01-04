@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Employee } from '../models/employee';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { ToastService } from '@services/toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   apiURL = 'http://dummy.restapiexample.com/api/v1';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toast: ToastService) { }
 
   // HttpClient API get() method => Fetch employees list
   getEmployees(): Observable<Employee[]> {
@@ -66,7 +67,11 @@ export class ApiService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    window.alert(errorMessage);
+    this.toast.presentToast({
+      header: 'Error',
+      message: errorMessage,
+      color: 'danger'
+    });
     return throwError(errorMessage);
   }
 }
