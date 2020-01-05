@@ -13,7 +13,14 @@
   <ion-grid>
     <ion-row>
       <ion-col>
+        <ion-searchbar
+          showCancelButton="focus"
+          debounce="500"
+          placeholder="Type to filter data..."
+          (ionChange)="updateFilter($event)"
+        ></ion-searchbar>
         <ngx-datatable
+          #table
           class="material striped"
           columnMode="force"
           [loadingIndicator]="!employees"
@@ -21,15 +28,15 @@
           footerHeight="50"
           rowHeight="auto"
           [rows]="employees"
+          [columns]="[
+          { prop: 'id', name: 'ID' },
+          { prop: 'name', name: 'Name' },
+          { prop: 'salary', name: 'Salary' }
+          ]"
           [limit]="10"
-          [columns]="
-              [
-              { prop: 'id', name: 'ID' },
-              { prop: 'name', name: 'Name' },
-              { prop: 'salary', name: 'Salary' }
-              ]"
           [selected]="selected"
           selectionType="single"
+          (select)="onSelect($event)"
         >
         </ngx-datatable>
       </ion-col>
