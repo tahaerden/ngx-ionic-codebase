@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ui-components',
@@ -7,8 +7,10 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['./ui-components.page.scss']
 })
 export class UiComponentsPage implements OnInit {
-
-  constructor(private actionCtrl: ActionSheetController) {}
+  constructor(
+    private actionCtrl: ActionSheetController,
+    private toast: ToastController
+  ) {}
 
   ngOnInit() {}
   openActionSheet() {
@@ -57,5 +59,23 @@ export class UiComponentsPage implements OnInit {
         ]
       })
       .then(ac => ac.present());
+  }
+  showToast() {
+    this.toast
+      .create({
+        header: 'Test!',
+        color: 'danger',
+        message: 'This is a dangerous test toast.',
+        buttons: [
+          {
+            icon: 'close-circle',
+            text: null,
+            role: 'cancel'
+          }
+        ]
+      })
+      .then(toast => {
+        toast.present();
+      });
   }
 }
