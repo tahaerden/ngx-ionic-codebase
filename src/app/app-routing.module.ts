@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'employee-list',
     loadChildren: () => import('./pages/employee-list/employee-list.module').then(m => m.EmployeeListPageModule)
+  },
+  {
+    path: 'ui-components',
+    loadChildren: () => import('./pages/ui-components/ui-components.module').then( m => m.UiComponentsPageModule)
   }
 ];
 

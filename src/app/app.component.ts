@@ -20,6 +20,11 @@ export class AppComponent {
       title: 'Employee List',
       url: '/employee-list',
       icon: 'list'
+    },
+    {
+      title: 'UI Components',
+      url: '/ui-components',
+      icon: 'book'
     }
   ];
 
