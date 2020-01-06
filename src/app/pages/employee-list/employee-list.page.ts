@@ -1,14 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ApiService } from '@services/api.service';
 import { Employee } from '@models/employee';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list',
   templateUrl: 'employee-list.page.html',
   styleUrls: ['employee-list.page.scss']
 })
-export class EmployeeListPage implements OnInit {
+export class EmployeeListPage implements OnInit, OnDestroy {
+  private sub = new Subscription();
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
   employees: Employee[];
   temp = [];
@@ -17,17 +19,18 @@ export class EmployeeListPage implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.api.getEmployees().subscribe((data: Employee[]) => {
-      // TODO: check how to unsub
-      this.employees = data;
-      this.temp = data;
-    });
+    this.sub.add(
+      this.api.getEmployees().subscribe((data: Employee[]) => {
+        // TODO: check how to unsub
+        this.employees = data;
+        this.temp = data;
+      })
+    );
   }
 
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  //   this.filterSubject.unsubscribe();
-  // }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
   // Delete employee
   // deleteEmployee(id: number) {
   //   if (window.confirm('Are you sure, you want to delete?')) {
