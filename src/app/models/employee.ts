@@ -1,4 +1,11 @@
-export class Employee {
+export interface IEmployee {
+  id: string;
+  name: string;
+  salary: string;
+  age: string;
+}
+
+export class Employee implements IEmployee {
   public id: string;
   public name: string;
   public salary: string;

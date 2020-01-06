@@ -2,9 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '@services/api.service';
 import { Employee } from '@models/employee';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { NgForOf } from '@angular/common';
-import { log } from 'util';
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-list',
@@ -12,14 +9,25 @@ import { async } from '@angular/core/testing';
   styleUrls: ['employeeList.page.scss']
 })
 export class EmployeeListPage implements OnInit {
-  // employees: Employee[] = [];
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
-  // @ViewChild('hdrTpl', { static: true }) hdrTpl: TemplateRef<any>;
   employees: Employee[];
   temp = [];
   selected = [];
   // asyncResult: string;
   constructor(private api: ApiService) {}
+
+  ngOnInit() {
+    this.api.getEmployees().subscribe((data: Employee[]) => {
+      // TODO: check how to unsub
+      this.employees = data;
+      this.temp = data;
+    });
+  }
+
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  //   this.filterSubject.unsubscribe();
+  // }
   // Delete employee
   // deleteEmployee(id: number) {
   //   if (window.confirm('Are you sure, you want to delete?')) {
@@ -28,15 +36,6 @@ export class EmployeeListPage implements OnInit {
   //     });
   //   }
   // }
-  getEmployees() {
-    this.api.getEmployees().subscribe((data: Employee[]) => {
-      // cache our list
-      this.employees = data.map((emp: any) => {
-        return new Employee(emp);
-      });
-      this.temp = [...this.employees];
-    });
-  }
   onSelect({ selected }) {
     if (selected) {
       this.selected = selected;
@@ -62,18 +61,4 @@ export class EmployeeListPage implements OnInit {
     });
     this.table.offset = 0;
   }
-  // TODO: Implement async await func
-  // async getAsyncData() {
-  //   this.asyncResult = await this.httpClient.get<Employee>(this.url).toPromise();
-  //   console.log('No issues, I will wait until promise is resolved..');
-  // }
-
-  ngOnInit() {
-    this.getEmployees();
-  }
-
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  //   this.filterSubject.unsubscribe();
-  // }
 }

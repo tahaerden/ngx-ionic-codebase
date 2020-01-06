@@ -13,12 +13,12 @@ export class HomePage {
   constructor() {
   }
 
-  clickCounter() {
-    this.clickCount += 1;
-  }
-
   ionViewWillEnter() {
     console.log('ionViewWillEnter');
+  }
+
+  clickCounter() {
+    this.clickCount += 1;
   }
 
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Employee } from '../models/employee';
+import { IEmployee, Employee } from '../models/employee';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, map, catchError } from 'rxjs/operators';
 import { ToastService } from '@services/toast.service';
 
 @Injectable({
@@ -14,38 +14,42 @@ export class ApiService {
 
   // HttpClient API get() method => Fetch employees list
   getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.apiURL + '/employees')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
+    return this.http.get<Employee[]>(this.apiURL + '/employees').pipe(
+      retry(1),
+      map((data: IEmployee[]) =>
+        data.map((item: IEmployee) => {
+          return new Employee(item);
+        })
+      ),
+      catchError(this.handleError)
+    );
   }
 
   // HttpClient API get() method => Fetch employee
-  getEmployee(id: number): Observable<Employee> {
+  getEmployee(id: number): Observable<IEmployee> {
     return this.http
-      .get<Employee>(this.apiURL + '/employee/' + id)
+      .get<IEmployee>(this.apiURL + '/employee/' + id)
       .pipe(retry(1), catchError(this.handleError));
   }
 
   // HttpClient API post() method => Create employee
-  createEmployee(employee: string): Observable<Employee> {
+  createEmployee(employee: string): Observable<IEmployee> {
     return this.http
-      .post<Employee>(this.apiURL + '/create', JSON.stringify(employee))
+      .post<IEmployee>(this.apiURL + '/create', JSON.stringify(employee))
       .pipe(retry(1), catchError(this.handleError));
   }
 
   // HttpClient API put() method => Update employee
-  updateEmployee(id: number, employee: string): Observable<Employee> {
+  updateEmployee(id: number, employee: string): Observable<IEmployee> {
     return this.http
-      .put<Employee>(this.apiURL + '/update/' + id, JSON.stringify(employee))
+      .put<IEmployee>(this.apiURL + '/update/' + id, JSON.stringify(employee))
       .pipe(retry(1), catchError(this.handleError));
   }
 
   // HttpClient API delete() method => Delete employee
   deleteEmployee(id: number) {
     return this.http
-      .delete<Employee>(this.apiURL + '/delete/' + id)
+      .delete<IEmployee>(this.apiURL + '/delete/' + id)
       .pipe(retry(1), catchError(this.handleError));
   }
 
