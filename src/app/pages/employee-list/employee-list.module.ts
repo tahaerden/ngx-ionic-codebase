@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
-import { EmployeeListPage } from './employeeList.page';
+import { EmployeeListPage } from './employee-list.page';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({

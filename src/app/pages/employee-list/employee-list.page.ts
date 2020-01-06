@@ -5,8 +5,8 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-list',
-  templateUrl: 'employeeList.page.html',
-  styleUrls: ['employeeList.page.scss']
+  templateUrl: 'employee-list.page.html',
+  styleUrls: ['employee-list.page.scss']
 })
 export class EmployeeListPage implements OnInit {
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
