@@ -9,15 +9,22 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+    loadChildren: () =>
+      import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'employee-list',
-    loadChildren: () => import('./pages/employee-list/employee-list.module').then(m => m.EmployeeListPageModule)
+    loadChildren: () =>
+      import('./pages/employee-list/employee-list.module').then(
+        m => m.EmployeeListPageModule
+      )
   },
   {
     path: 'ui-components',
-    loadChildren: () => import('./pages/ui-components/ui-components.module').then( m => m.UiComponentsPageModule)
+    loadChildren: () =>
+      import('./pages/ui-components/ui-components.module').then(
+        m => m.UiComponentsPageModule
+      )
   }
 ];
 

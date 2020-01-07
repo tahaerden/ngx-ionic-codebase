@@ -68,6 +68,7 @@ export class ApiService {
         color: 'danger',
         header: 'Error',
         message: errorMessage,
+        duration: 5 * 1000,
         buttons: [
           {
             icon: 'close-circle',
