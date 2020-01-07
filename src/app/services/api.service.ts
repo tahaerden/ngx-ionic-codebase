@@ -15,12 +15,12 @@ export class ApiService {
   // HttpClient API get() method => Fetch employees list
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.apiURL + '/employees').pipe(
-      retry(1),
       map((data: IEmployee[]) =>
         data.map((item: IEmployee) => {
           return new Employee(item);
         })
       ),
+      retry(1),
       catchError(this.handleError)
     );
   }
