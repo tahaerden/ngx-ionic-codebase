@@ -42,18 +42,15 @@
       </ion-col>
       <ion-col>
         <ion-card class="welcome-card">
-          <img
-            src="/assets/shapes.svg"
-            alt=""
-          />
+          <div class="text-center">
+            <ion-icon name="contact" class="pp"></ion-icon>
+          </div>
           <ion-card-header>
             <ion-card-subtitle>Age {{ selected[0]?.age }}</ion-card-subtitle>
             <ion-card-title>{{ selected[0]?.name }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <span>
-              <strong>Salary:</strong> {{ selected[0]?.salary }}
-            </span>
+            <span> <strong>Salary:</strong> {{ selected[0]?.salary }} </span>
           </ion-card-content>
         </ion-card>
       </ion-col>
