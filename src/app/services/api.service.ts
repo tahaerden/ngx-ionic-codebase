@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IEmployee, Employee } from '../models/employee';
-import { Observable, throwError, timer } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
 
@@ -54,7 +54,7 @@ export class ApiService {
   }
 
   // Error handling
-  handleError(error: any) {
+  handleError = (error: any) => {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
@@ -63,20 +63,22 @@ export class ApiService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    this.toast.create({
-      color: 'danger',
-      header: 'Error',
-      message: errorMessage,
-      buttons: [
-        {
-          icon: 'close-circle',
-          text: null,
-          role: 'cancel'
-        }
-      ]
-    }).then(toast => {
-      toast.present();
-    });
+    this.toast
+      .create({
+        color: 'danger',
+        header: 'Error',
+        message: errorMessage,
+        buttons: [
+          {
+            icon: 'close-circle',
+            text: null,
+            role: 'cancel'
+          }
+        ]
+      })
+      .then(toast => {
+        toast.present();
+      });
     return throwError(errorMessage);
-  }
+  };
 }

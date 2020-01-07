@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ApiService } from '@services/api.service';
 import { Employee } from '@models/employee';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['employee-list.page.scss']
 })
 export class EmployeeListPage implements OnInit, OnDestroy {
-  private sub = new Subscription();
+  // private sub = new Subscription();
+  unsub = new Subject();
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
   employees: Employee[];
   temp = [];
@@ -19,17 +21,29 @@ export class EmployeeListPage implements OnInit, OnDestroy {
   constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.sub.add(
-      this.api.getEmployees().subscribe((data: Employee[]) => {
+    this.api
+      .getEmployees()
+      .pipe(takeUntil(this.unsub))
+      .subscribe((data: Employee[]) => {
         // TODO: check how to unsub
         this.employees = data;
         this.temp = data;
-      })
-    );
+      });
+
+    // this.sub.add(
+    //   this.api
+    //     .getEmployees()
+    //     .subscribe((data: Employee[]) => {
+    //       this.employees = data;
+    //       this.temp = data;
+    //     })
+    // );
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
+    this.unsub.next();
+    this.unsub.complete();
   }
   // Delete employee
   // deleteEmployee(id: number) {
