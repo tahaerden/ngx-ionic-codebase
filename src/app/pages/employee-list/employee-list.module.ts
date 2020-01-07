@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { EmployeeListPage } from './employee-list.page';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { ComponentsModule } from '@components/components.module';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FormsModule,
     IonicModule,
     NgxDatatableModule,
+    ComponentsModule,
     RouterModule.forChild([
       {
         path: '',
