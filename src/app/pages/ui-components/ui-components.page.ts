@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActionSheetController, ToastController } from '@ionic/angular';
 
 @Component({
@@ -6,13 +6,13 @@ import { ActionSheetController, ToastController } from '@ionic/angular';
   templateUrl: './ui-components.page.html',
   styleUrls: ['./ui-components.page.scss']
 })
-export class UiComponentsPage implements OnInit {
+export class UiComponentsPage {
   constructor(
     private actionCtrl: ActionSheetController,
     private toast: ToastController
   ) {}
 
-  ngOnInit() {}
+  ionViewWillEnter() {}
   openActionSheet() {
     this.actionCtrl
       .create({

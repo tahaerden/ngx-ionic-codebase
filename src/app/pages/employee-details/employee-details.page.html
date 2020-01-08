@@ -1,7 +1,13 @@
 <app-header [title]="'Employee Details'"></app-header>
 
 <ion-content>
-  <p *ngIf="(test$ | async) as test">
-    name: {{ test.name }} age: {{ test.age }} salary: {{ test.salary }}
-  </p>
+  <div *ngIf="(employee$ | async) as employee">
+    <p>
+      name: {{ employee.name }} age: {{ employee.age }} salary: {{
+      employee.salary }}
+    </p>
+    <ion-button (click)="deleteEmployee(employee.id)" color="danger"
+      >Delete</ion-button
+    >
+  </div>
 </ion-content>

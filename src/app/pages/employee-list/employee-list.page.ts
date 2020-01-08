@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ApiService } from '@services/api.service';
 import { Employee } from '@models/employee';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: 'employee-list.page.html',
   styleUrls: ['employee-list.page.scss']
 })
-export class EmployeeListPage implements OnInit, OnDestroy {
+export class EmployeeListPage {
   unsub = new Subject();
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
   employees: Employee[];
@@ -19,7 +19,7 @@ export class EmployeeListPage implements OnInit, OnDestroy {
   selected = [];
   constructor(private api: ApiService, private router: Router) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.api
       .getEmployees()
       .pipe(takeUntil(this.unsub))
@@ -38,22 +38,13 @@ export class EmployeeListPage implements OnInit, OnDestroy {
     // );
   }
 
-  ngOnDestroy() {
+  ionViewWillLeave() {
     this.unsub.next();
     this.unsub.complete();
   }
-  // Delete employee
-  // deleteEmployee(id: number) {
-  //   if (window.confirm('Are you sure, you want to delete?')) {
-  //     this.api.deleteEmployee(id).subscribe(data => {
-  //       this.getEmployees();
-  //     });
-  //   }
-  // }
+
   onSelect({ selected }) {
     if (selected) {
-      console.log('here');
-
       this.router.navigate(['employee-details', selected[0].id]);
       // this.selected = selected;
     }
