@@ -2,12 +2,32 @@
 
 <ion-content>
   <div *ngIf="(employee$ | async) as employee">
-    <p>
-      name: {{ employee.name }} age: {{ employee.age }} salary: {{
-      employee.salary }}
-    </p>
-    <ion-button (click)="deleteEmployee(employee.id)" color="danger"
-      >Delete</ion-button
-    >
+    <ion-grid *ngIf="(employee$ | async) as employee">
+      <ion-row>
+        <ion-col>
+          <ion-card>
+            <div class="text-center">
+              <ion-icon name="contact" class="pp"></ion-icon>
+            </div>
+            <ion-card-header>
+              <!-- <ion-card-subtitle>Age {{ employee.age }}</ion-card-subtitle> -->
+              <ion-card-title
+                >{{ employee.name }} (Age: {{ employee.age }})</ion-card-title
+              >
+            </ion-card-header>
+            <ion-card-content>
+              <span> <strong>Salary:</strong> {{ employee.salary }} </span>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="deleteEmployee(employee.id)" color="danger"
+            >Delete</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
