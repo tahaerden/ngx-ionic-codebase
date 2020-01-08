@@ -37,7 +37,7 @@ export class ApiService {
   }
 
   // HttpClient API post() method => Create employee
-  createEmployee(employee: string): Observable<IEmployee> {
+  createEmployee(employee: IEmployee): Observable<IEmployee> {
     return this.http
       .post<IEmployee>(this.apiURL + '/create', JSON.stringify(employee))
       .pipe(retry(1), catchError(this.handleError));

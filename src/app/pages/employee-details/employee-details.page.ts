@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '@services/api.service';
 import { Observable, Subject } from 'rxjs';
-import { Employee } from '@models/employee';
+import { Employee, IEmployee } from '@models/employee';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
@@ -14,6 +14,7 @@ import { ToastController } from '@ionic/angular';
 export class EmployeeDetailsPage {
   unsub = new Subject();
   employee$: Observable<Employee>;
+  addEmp: any;
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
@@ -29,6 +30,27 @@ export class EmployeeDetailsPage {
   ionViewWillLeave() {
     this.unsub.next();
     this.unsub.complete();
+  }
+
+  createEmployee() {
+    this.api
+      .createEmployee(this.addEmp)
+      .pipe(takeUntil(this.unsub))
+      .subscribe((data: any) => {
+        if (data) {
+          this.toast
+            .create({
+              color: 'success',
+              header: 'Success',
+              // message: data.success.text,
+              duration: 5 * 1000
+            })
+            .then(toast => {
+              toast.present();
+              this.router.navigate(['employee-list']);
+            });
+        }
+      });
   }
 
   deleteEmployee(id: number) {
