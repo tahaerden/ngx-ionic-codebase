@@ -26,18 +26,13 @@
           </ion-card>
         </ion-col>
         <ion-col>
-          <form (ngSubmit)="createEmployee()">
+          <form #f="ngForm" (ngSubmit)="createEmployee(f)">
             <ion-list lines="full" class="ion-no-margin ion-no-padding">
               <ion-item>
                 <ion-label position="stacked"
                   >Name <ion-text color="danger">*</ion-text></ion-label
                 >
-                <ion-input
-                  required
-                  type="text"
-                  [(ngModel)]="addEmp.name"
-                  name="name"
-                ></ion-input>
+                <ion-input required type="text" ngModel name="name"></ion-input>
               </ion-item>
 
               <ion-item>
@@ -47,7 +42,7 @@
                 <ion-input
                   required
                   type="text"
-                  [(ngModel)]="addEmp.salary"
+                  ngModel
                   name="salary"
                 ></ion-input>
               </ion-item>
@@ -56,21 +51,12 @@
                 <ion-label position="stacked"
                   >Age <ion-text color="danger">*</ion-text></ion-label
                 >
-                <ion-input
-                  required
-                  type="text"
-                  [(ngModel)]="addEmp.age"
-                  name="age"
-                ></ion-input>
+                <ion-input required type="text" ngModel name="age"></ion-input>
               </ion-item>
 
               <ion-item>
                 <ion-label position="stacked">Avatar</ion-label>
-                <ion-input
-                  type="text"
-                  [(ngModel)]="addEmp.profile_image"
-                  name="profile_image"
-                ></ion-input>
+                <ion-input type="text" ngModel name="profile_image"></ion-input>
               </ion-item>
             </ion-list>
             <div class="ion-padding">

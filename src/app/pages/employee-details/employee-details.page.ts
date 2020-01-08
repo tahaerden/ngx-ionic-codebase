@@ -5,6 +5,7 @@ import { Employee, IEmployee } from '@models/employee';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-details',
@@ -14,7 +15,7 @@ import { ToastController } from '@ionic/angular';
 export class EmployeeDetailsPage {
   unsub = new Subject();
   employee$: Observable<Employee>;
-  addEmp: any;
+
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
@@ -32,9 +33,9 @@ export class EmployeeDetailsPage {
     this.unsub.complete();
   }
 
-  createEmployee() {
+  createEmployee(f: NgForm) {
     this.api
-      .createEmployee(this.addEmp)
+      .createEmployee(f.value)
       .pipe(takeUntil(this.unsub))
       .subscribe((data: any) => {
         if (data) {

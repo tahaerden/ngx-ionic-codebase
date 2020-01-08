@@ -9,7 +9,7 @@ import { ToastController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class ApiService {
-  apiURL = 'http://dummy.restapiexample.com/api/v1';
+  apiURL = 'https://dummy.restapiexample.com/api/v1';
   constructor(private http: HttpClient, private toast: ToastController) {}
 
   // HttpClient API get() method => Fetch employees list
@@ -37,9 +37,9 @@ export class ApiService {
   }
 
   // HttpClient API post() method => Create employee
-  createEmployee(employee: IEmployee): Observable<IEmployee> {
+  createEmployee(employee: any): Observable<any> {
     return this.http
-      .post<IEmployee>(this.apiURL + '/create', JSON.stringify(employee))
+      .post<any>(this.apiURL + '/create', JSON.stringify(employee))
       .pipe(retry(1), catchError(this.handleError));
   }
 
