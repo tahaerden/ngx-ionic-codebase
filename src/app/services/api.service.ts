@@ -26,10 +26,14 @@ export class ApiService {
   }
 
   // HttpClient API get() method => Fetch employee
-  getEmployee(id: number): Observable<IEmployee> {
-    return this.http
-      .get<IEmployee>(this.apiURL + '/employee/' + id)
-      .pipe(retry(1), catchError(this.handleError));
+  getEmployee(id: number): Observable<Employee> {
+    return this.http.get<Employee>(this.apiURL + '/employee/' + id).pipe(
+      map(res => {
+        return new Employee(res);
+      }),
+      retry(1),
+      catchError(this.handleError)
+    );
   }
 
   // HttpClient API post() method => Create employee

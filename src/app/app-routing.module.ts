@@ -25,6 +25,13 @@ const routes: Routes = [
       import('./pages/ui-components/ui-components.module').then(
         m => m.UiComponentsPageModule
       )
+  },
+  {
+    path: 'employee-details/:id',
+    loadChildren: () =>
+      import('./pages/employee-details/employee-details.module').then(
+        m => m.EmployeeDetailsPageModule
+      )
   }
 ];
 
