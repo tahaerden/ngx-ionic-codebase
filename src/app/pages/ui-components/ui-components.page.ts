@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { ActionSheetController, ToastController } from '@ionic/angular';
+import {
+  ActionSheetController,
+  ToastController,
+  AlertController
+} from '@ionic/angular';
 
 @Component({
   selector: 'app-ui-components',
@@ -9,7 +13,8 @@ import { ActionSheetController, ToastController } from '@ionic/angular';
 export class UiComponentsPage {
   constructor(
     private actionCtrl: ActionSheetController,
-    private toast: ToastController
+    private toast: ToastController,
+    private alertCtrl: AlertController
   ) {}
 
   ionViewWillEnter() {}
@@ -76,6 +81,18 @@ export class UiComponentsPage {
       })
       .then(toast => {
         toast.present();
+      });
+  }
+  showAlert() {
+    this.alertCtrl
+      .create({
+        header: 'Alert',
+        subHeader: 'Subtitle',
+        message: 'This is an alert message.',
+        buttons: ['Cancel', 'Open Modal', 'Delete']
+      })
+      .then(alert => {
+        alert.present();
       });
   }
 }

@@ -33,27 +33,6 @@ export class EmployeeDetailsPage {
     this.unsub.complete();
   }
 
-  createEmployee(f: NgForm) {
-    this.api
-      .createEmployee(f.value)
-      .pipe(takeUntil(this.unsub))
-      .subscribe((data: any) => {
-        if (data) {
-          this.toast
-            .create({
-              color: 'success',
-              header: 'Success',
-              // message: data.success.text,
-              duration: 5 * 1000
-            })
-            .then(toast => {
-              toast.present();
-              this.router.navigate(['employee-list']);
-            });
-        }
-      });
-  }
-
   deleteEmployee(id: number) {
     this.api
       .deleteEmployee(id)

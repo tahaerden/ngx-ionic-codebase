@@ -5,6 +5,8 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
 
 @Component({
   selector: 'app-list',
@@ -17,17 +19,14 @@ export class EmployeeListPage {
   employees: Employee[];
   temp = [];
   selected = [];
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(
+    public api: ApiService,
+    private router: Router,
+    public modalCtrl: ModalController
+  ) {}
 
   ionViewWillEnter() {
-    this.api
-      .getEmployees()
-      .pipe(takeUntil(this.unsub))
-      .subscribe((data: Employee[]) => {
-        this.employees = data;
-        this.temp = data;
-      });
-
+    this.refreshDT();
     // this.sub.add(
     //   this.api
     //     .getEmployees()
@@ -49,6 +48,15 @@ export class EmployeeListPage {
       // this.selected = selected;
     }
   }
+  refreshDT() {
+    this.api
+      .getEmployees()
+      .pipe(takeUntil(this.unsub))
+      .subscribe((data: Employee[]) => {
+        this.employees = data;
+        this.temp = data;
+      });
+  }
   updateFilter(event: any) {
     const value = event.target.value.toLowerCase().trim();
     // get the key names of each column in the dataset
@@ -68,5 +76,16 @@ export class EmployeeListPage {
       }
     });
     this.table.offset = 0;
+  }
+
+  async showModal() {
+    const modal = await this.modalCtrl.create({
+      component: CreateEmployeeComponent
+    });
+    await modal.present();
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      this.refreshDT();
+    }
   }
 }

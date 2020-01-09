@@ -1,0 +1,42 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form #f="ngForm" (ngSubmit)="createEmployee(f)">
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+              <ion-label position="stacked"
+                >Name <ion-text color="danger">*</ion-text></ion-label
+              >
+              <ion-input required type="text" ngModel name="name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked"
+                >Salary <ion-text color="danger">*</ion-text></ion-label
+              >
+              <ion-input required type="text" ngModel name="salary"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked"
+                >Age <ion-text color="danger">*</ion-text></ion-label
+              >
+              <ion-input required type="text" ngModel name="age"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Avatar</ion-label>
+              <ion-input type="text" ngModel name="profile_image"></ion-input>
+            </ion-item>
+          </ion-list>
+          <div class="ion-padding">
+            <ion-button expand="block" type="submit" class="ion-no-margin"
+              >Create Employee</ion-button
+            >
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

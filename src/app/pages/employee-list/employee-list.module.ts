@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { EmployeeListPage } from './employee-list.page';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ComponentsModule } from '@components/components.module';
+import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ComponentsModule } from '@components/components.module';
       }
     ])
   ],
-  declarations: [EmployeeListPage]
+  declarations: [EmployeeListPage, CreateEmployeeComponent],
+  entryComponents: [CreateEmployeeComponent]
 })
 export class EmployeeListPageModule {}
