@@ -3,7 +3,7 @@
     <ion-row>
       <ion-col>
         <!-- TODO: add validation -->
-        <form #f="ngForm" (ngSubmit)="createEmployee(f)">
+        <form (ngSubmit)="createEmployee(f)" #f="ngForm" name="form" novalidate>
           <ion-list lines="full" class="ion-no-margin ion-no-padding">
             <ion-item>
               <ion-label position="stacked"
@@ -16,7 +16,9 @@
                 type="text"
                 ngModel
                 name="name"
+                #name="ngModel"
               ></ion-input>
+              <error-messages [errors]="name.errors"></error-messages>
             </ion-item>
 
             <ion-item>
@@ -30,7 +32,9 @@
                 type="number"
                 ngModel
                 name="salary"
+                #salary="ngModel"
               ></ion-input>
+              <error-messages [errors]="salary.errors"></error-messages>
             </ion-item>
 
             <ion-item>
@@ -44,7 +48,9 @@
                 type="number"
                 ngModel
                 name="age"
+                #age="ngModel"
               ></ion-input>
+              <error-messages [errors]="age.errors"></error-messages>
             </ion-item>
 
             <ion-item>

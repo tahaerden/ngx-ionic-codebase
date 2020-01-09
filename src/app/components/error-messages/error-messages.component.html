@@ -1,0 +1,9 @@
+<ion-text color="danger">
+  <small *ngIf="errors?.minlength">This field is too short</small>
+  <small *ngIf="errors?.maxlength">This field is too long</small>
+  <small *ngIf="errors?.min">This number is too small</small>
+  <small *ngIf="errors?.max">This number is too large</small>
+  <small *ngIf="errors?.email">This needs to be a valid email</small>
+  <small *ngIf="errors?.valid">This value is not valid</small>
+  <small *ngIf="errors?.pattern">This needs to be a valid pattern</small>
+</ion-text>
