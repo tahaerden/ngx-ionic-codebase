@@ -8,13 +8,37 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
+      <ion-col size="9">
         <ion-searchbar
           showCancelButton="focus"
           debounce="500"
           placeholder="Type to filter data..."
           (ionChange)="updateFilter($event)"
         ></ion-searchbar>
+      </ion-col>
+      <ion-col size="3">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Search Column</ion-label>
+            <ion-select
+              [(ngModel)]="searchColumn"
+              placeholder="Search Column"
+              okText="OK"
+              cancelText="Dismiss"
+            >
+              <ion-select-option value="all">All</ion-select-option>
+              <ion-select-option
+                *ngFor="let column of columns"
+                [value]="column.prop"
+                >{{column.name}}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
         <ngx-datatable
           #table
           class="material striped"
@@ -24,11 +48,7 @@
           footerHeight="50"
           rowHeight="auto"
           [rows]="employees"
-          [columns]="[
-          { prop: 'id', name: 'ID' },
-          { prop: 'name', name: 'Name' },
-          { prop: 'salary', name: 'Salary' }
-          ]"
+          [columns]="columns"
           [limit]="10"
           [selected]="selected"
           selectionType="single"

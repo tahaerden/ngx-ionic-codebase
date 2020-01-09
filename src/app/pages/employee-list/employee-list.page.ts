@@ -16,6 +16,11 @@ import { CreateEmployeeComponent } from '@components/modals/create-employee/crea
 export class EmployeeListPage {
   unsub = new Subject();
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+  columns = [
+    { prop: 'name', name: 'Name' },
+    { prop: 'salary', name: 'Salary' }
+  ];
+  searchColumn = 'all';
   employees: Employee[];
   temp = [];
   selected = [];
@@ -58,23 +63,38 @@ export class EmployeeListPage {
       });
   }
   updateFilter(event: any) {
-    const value = event.target.value.toLowerCase().trim();
-    // get the key names of each column in the dataset
-    const keys = Object.keys(this.temp[0]);
-    // assign filtered matches to the active datatable
-    this.employees = this.temp.filter(item => {
-      for (const i of keys) {
+    const searchText = event.target.value.toLowerCase().trim();
+    if (this.searchColumn === 'all') {
+      // Search for all columns by getting the key names of each column in the dataset
+      const keys = Object.keys(this.temp[0]);
+      // assign filtered matches to the active datatable
+      this.employees = this.temp.filter(item => {
+        for (const i of keys) {
+          if (
+            item[i] &&
+            item[i]
+              .toString()
+              .toLowerCase()
+              .indexOf(searchText) !== -1
+          ) {
+            return true;
+          }
+        }
+      });
+    } else {
+      // Search for specific columns
+      this.employees = this.temp.filter(item => {
         if (
-          item[i] &&
-          item[i]
+          item[this.searchColumn] &&
+          item[this.searchColumn]
             .toString()
             .toLowerCase()
-            .indexOf(value) !== -1
+            .indexOf(searchText) !== -1
         ) {
           return true;
         }
-      }
-    });
+      });
+    }
     this.table.offset = 0;
   }
 
