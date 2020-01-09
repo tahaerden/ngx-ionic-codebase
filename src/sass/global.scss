@@ -27,6 +27,8 @@
 
 /* Global CSS */
 @import './helpers';
+@import './fixes';
+@import './ngx-datatable';
 
 /* 3rd-party packages CSS */
 @import '~@swimlane/ngx-datatable/index.css';
@@ -34,8 +36,3 @@
 @import '~@swimlane/ngx-datatable/themes/dark.scss';
 @import '~@swimlane/ngx-datatable/themes/bootstrap.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
-
-/* Fixes */
-ion-img {
-  min-height: 1px;
-}

@@ -1,0 +1,6 @@
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover,
+.ngx-datatable.material:not(.cell-selection)
+  .datatable-body-row:hover
+  .datatable-row-group {
+  cursor: pointer;
+}
