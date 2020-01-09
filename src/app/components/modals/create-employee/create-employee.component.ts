@@ -26,23 +26,25 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   createEmployee(f: NgForm) {
-    this.api
-      .createEmployee(f.value)
-      .pipe(takeUntil(this.unsub))
-      .subscribe((data: any) => {
-        if (data) {
-          this.toast
-            .create({
-              color: 'success',
-              header: 'Success',
-              message: 'Employee is added successfully.',
-              duration: 5 * 1000
-            })
-            .then(toast => {
-              toast.present();
-              this.modalCtrl.dismiss(true);
-            });
-        }
-      });
+    console.log(f);
+
+    // this.api
+    //   .createEmployee(f.value)
+    //   .pipe(takeUntil(this.unsub))
+    //   .subscribe((data: any) => {
+    //     if (data) {
+    //       this.toast
+    //         .create({
+    //           color: 'success',
+    //           header: 'Success',
+    //           message: 'Employee is added successfully.',
+    //           duration: 5 * 1000
+    //         })
+    //         .then(toast => {
+    //           toast.present();
+    //           this.modalCtrl.dismiss(true);
+    //         });
+    //     }
+    //   });
   }
 }

@@ -9,21 +9,42 @@
               <ion-label position="stacked"
                 >Name <ion-text color="danger">*</ion-text></ion-label
               >
-              <ion-input required type="text" ngModel name="name"></ion-input>
+              <ion-input
+                required
+                minlength="2"
+                maxlength="25"
+                type="text"
+                ngModel
+                name="name"
+              ></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked"
                 >Salary <ion-text color="danger">*</ion-text></ion-label
               >
-              <ion-input required type="text" ngModel name="salary"></ion-input>
+              <ion-input
+                required
+                min="1"
+                max="9999"
+                type="number"
+                ngModel
+                name="salary"
+              ></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked"
                 >Age <ion-text color="danger">*</ion-text></ion-label
               >
-              <ion-input required type="text" ngModel name="age"></ion-input>
+              <ion-input
+                required
+                min="18"
+                max="65"
+                type="number"
+                ngModel
+                name="age"
+              ></ion-input>
             </ion-item>
 
             <ion-item>
@@ -32,7 +53,11 @@
             </ion-item>
           </ion-list>
           <div class="ion-padding">
-            <ion-button expand="block" type="submit" class="ion-no-margin"
+            <ion-button
+              expand="block"
+              type="submit"
+              class="ion-no-margin"
+              [disabled]="!f.form.valid"
               >Create Employee</ion-button
             >
           </div>
