@@ -12,8 +12,7 @@
     </ion-row>
     <ion-row>
       <!-- TODO: Separate search and column type to its own component -->
-      <!-- TODO: Change col size for mobile -->
-      <ion-col size="9">
+      <ion-col size="12" size-md="8">
         <ion-searchbar
           showCancelButton="focus"
           debounce="500"
@@ -21,7 +20,7 @@
           (ionChange)="updateFilter($event)"
         ></ion-searchbar>
       </ion-col>
-      <ion-col size="3">
+      <ion-col size="12" size-md="4">
         <ion-list>
           <ion-item>
             <ion-label position="stacked">Search Column</ion-label>
