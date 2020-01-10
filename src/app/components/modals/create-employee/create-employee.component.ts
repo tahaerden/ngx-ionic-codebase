@@ -26,8 +26,6 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   createEmployee(f: NgForm) {
-    console.log(f);
-
     this.api
       .createEmployee(f.value)
       .pipe(takeUntil(this.unsub))

@@ -11,6 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class ApiService {
   apiURL = 'https://dummy.restapiexample.com/api/v1';
   constructor(private http: HttpClient, private toast: ToastController) {}
+  // TODO: think about making api service generic
 
   // HttpClient API get() method => Fetch employees list
   getEmployees(): Observable<Employee[]> {
@@ -44,6 +45,7 @@ export class ApiService {
   }
 
   // HttpClient API put() method => Update employee
+  // TODO: implement update
   updateEmployee(id: number, employee: string): Observable<IEmployee> {
     return this.http
       .put<IEmployee>(this.apiURL + '/update/' + id, JSON.stringify(employee))
