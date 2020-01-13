@@ -24,7 +24,7 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-      <ion-col>
+      <ion-col [hidden]="!showUpdateEmployee">
         <form (ngSubmit)="updateEmployee(f)" #f="ngForm" name="form" novalidate>
           <ion-list lines="full" class="ion-no-margin ion-no-padding">
             <ion-item>
@@ -96,6 +96,11 @@
       <ion-col>
         <ion-button (click)="deleteEmployee()" color="danger"
           >Delete</ion-button
+        >
+        <ion-button
+          (click)="showUpdateEmployee = !showUpdateEmployee"
+          color="danger"
+          >Update</ion-button
         >
       </ion-col>
     </ion-row>

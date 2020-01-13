@@ -16,6 +16,7 @@ export class EmployeeDetailsPage {
   unsub = new Subject();
   employee$: Observable<Employee>;
   id = Number(this.route.snapshot.paramMap.get('id'));
+  showUpdateEmployee = false;
 
   constructor(
     private api: ApiService,
