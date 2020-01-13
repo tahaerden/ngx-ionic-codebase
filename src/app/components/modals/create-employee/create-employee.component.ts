@@ -30,7 +30,7 @@ export class CreateEmployeeComponent implements OnInit {
       .createEmployee(f.value)
       .pipe(takeUntil(this.unsub))
       .subscribe((data: any) => {
-        if (data) {
+        if (data.status === 'success') {
           this.toast
             .create({
               color: 'success',

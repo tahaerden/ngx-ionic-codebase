@@ -16,8 +16,8 @@ export class ApiService {
   // HttpClient API get() method => Fetch employees list
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.apiURL + '/employees').pipe(
-      map((data: IEmployee[]) =>
-        data.map((item: IEmployee) => {
+      map((data: any) =>
+        data.data.map((item: IEmployee) => {
           return new Employee(item);
         })
       ),
@@ -28,9 +28,9 @@ export class ApiService {
 
   // HttpClient API get() method => Fetch employee
   getEmployee(id: number): Observable<Employee> {
-    return this.http.get<Employee>(this.apiURL + '/employee/' + id).pipe(
+    return this.http.get<any>(this.apiURL + '/employee/' + id).pipe(
       map(res => {
-        return new Employee(res);
+        return new Employee(res.data);
       }),
       retry(1),
       catchError(this.handleError)
@@ -46,7 +46,7 @@ export class ApiService {
 
   // HttpClient API put() method => Update employee
   // TODO: implement update
-  updateEmployee(id: number, employee: string): Observable<IEmployee> {
+  updateEmployee(id: number, employee: any): Observable<IEmployee> {
     return this.http
       .put<IEmployee>(this.apiURL + '/update/' + id, JSON.stringify(employee))
       .pipe(retry(1), catchError(this.handleError));

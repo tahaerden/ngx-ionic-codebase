@@ -1,38 +1,103 @@
 <app-header [title]="'Employee Details'"></app-header>
 
 <ion-content>
-  <div *ngIf="(employee$ | async) as employee">
-    <ion-grid *ngIf="(employee$ | async) as employee">
-      <ion-row>
-        <ion-col>
-          <ion-card>
-            <div class="ion-text-center">
-              <img *ngIf="employee.avatar" [src]="employee.avatar" />
-              <ion-icon
-                *ngIf="!employee.avatar"
-                name="contact"
-                class="pp"
-              ></ion-icon>
-            </div>
-            <ion-card-header>
-              <!-- <ion-card-subtitle>Age {{ employee.age }}</ion-card-subtitle> -->
-              <ion-card-title
-                >{{ employee.name }} (Age: {{ employee.age }})</ion-card-title
+  <ion-grid *ngIf="(employee$ | async) as employee">
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <div class="ion-text-center">
+            <img *ngIf="employee.avatar" [src]="employee.avatar" />
+            <ion-icon
+              *ngIf="!employee.avatar"
+              name="contact"
+              class="pp"
+            ></ion-icon>
+          </div>
+          <ion-card-header>
+            <!-- <ion-card-subtitle>Age {{ employee.age }}</ion-card-subtitle> -->
+            <ion-card-title
+              >{{ employee.name }} (Age: {{ employee.age }})</ion-card-title
+            >
+          </ion-card-header>
+          <ion-card-content>
+            <span> <strong>Salary:</strong> {{ employee.salary }} </span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <form (ngSubmit)="updateEmployee(f)" #f="ngForm" name="form" novalidate>
+          <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+              <ion-label position="stacked"
+                >Name <ion-text color="danger">*</ion-text></ion-label
               >
-            </ion-card-header>
-            <ion-card-content>
-              <span> <strong>Salary:</strong> {{ employee.salary }} </span>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-button (click)="deleteEmployee(employee.id)" color="danger"
-            >Delete</ion-button
-          >
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+              <ion-input
+                required
+                minlength="2"
+                maxlength="25"
+                type="text"
+                [ngModel]="employee.name"
+                name="name"
+                #name="ngModel"
+              ></ion-input>
+              <error-messages [errors]="name.errors"></error-messages>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked"
+                >Salary <ion-text color="danger">*</ion-text></ion-label
+              >
+              <ion-input
+                required
+                min="1"
+                max="9999"
+                type="number"
+                [ngModel]="employee.salary"
+                name="salary"
+                #salary="ngModel"
+              ></ion-input>
+              <error-messages [errors]="salary.errors"></error-messages>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked"
+                >Age <ion-text color="danger">*</ion-text></ion-label
+              >
+              <ion-input
+                required
+                min="18"
+                max="65"
+                type="number"
+                [ngModel]="employee.age"
+                name="age"
+                #age="ngModel"
+              ></ion-input>
+              <error-messages [errors]="age.errors"></error-messages>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Avatar</ion-label>
+              <ion-input type="text" ngModel name="profile_image"></ion-input>
+            </ion-item>
+          </ion-list>
+          <div class="ion-padding">
+            <ion-button
+              expand="block"
+              type="submit"
+              class="ion-no-margin"
+              [disabled]="!f.form.valid"
+              >Update Employee</ion-button
+            >
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="deleteEmployee()" color="danger"
+          >Delete</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

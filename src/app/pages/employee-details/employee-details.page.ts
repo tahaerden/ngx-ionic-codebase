@@ -15,6 +15,7 @@ import { NgForm } from '@angular/forms';
 export class EmployeeDetailsPage {
   unsub = new Subject();
   employee$: Observable<Employee>;
+  id = Number(this.route.snapshot.paramMap.get('id'));
 
   constructor(
     private api: ApiService,
@@ -24,8 +25,7 @@ export class EmployeeDetailsPage {
   ) {}
 
   ionViewWillEnter() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.employee$ = this.api.getEmployee(id);
+    this.employee$ = this.api.getEmployee(this.id);
   }
 
   ionViewWillLeave() {
@@ -33,17 +33,38 @@ export class EmployeeDetailsPage {
     this.unsub.complete();
   }
 
-  deleteEmployee(id: number) {
+  updateEmployee(f: NgForm) {
     this.api
-      .deleteEmployee(id)
+      .updateEmployee(this.id, f.value)
       .pipe(takeUntil(this.unsub))
       .subscribe((data: any) => {
-        if (data.success) {
+        if (data.status === 'success') {
           this.toast
             .create({
               color: 'success',
               header: 'Success',
-              message: data.success.text,
+              message: 'Employee is edited successfully.',
+              duration: 5 * 1000
+            })
+            .then(toast => {
+              toast.present();
+              this.router.navigate(['employee-list']);
+            });
+        }
+      });
+  }
+
+  deleteEmployee() {
+    this.api
+      .deleteEmployee(this.id)
+      .pipe(takeUntil(this.unsub))
+      .subscribe((data: any) => {
+        if (data.status === 'success') {
+          this.toast
+            .create({
+              color: 'success',
+              header: 'Success',
+              message: data.message,
               duration: 5 * 1000
             })
             .then(toast => {
