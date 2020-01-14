@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent implements OnInit {
   themeToggle: boolean;
-  public appPages = [
+  private themeToggle$ = new BehaviorSubject(false);
+  castThemeToggle$ = this.themeToggle$.asObservable();
+  appPages = [
     {
       title: 'Home',
       url: '/home',
@@ -55,5 +58,6 @@ export class AppComponent implements OnInit {
   checkToggle(shouldCheck: boolean) {
     document.body.classList.toggle('dark', shouldCheck);
     this.themeToggle = shouldCheck;
+    this.themeToggle$.next(this.themeToggle);
   }
 }

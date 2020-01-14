@@ -45,7 +45,7 @@
       <ion-col>
         <ngx-datatable
           #table
-          class="material striped"
+          [ngClass]="(appComp.castThemeToggle$ | async) ? 'dark':'material striped'"
           columnMode="force"
           [loadingIndicator]="!employees"
           headerHeight="50"

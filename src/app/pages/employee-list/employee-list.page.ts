@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-list',
@@ -27,10 +28,12 @@ export class EmployeeListPage {
   constructor(
     public api: ApiService,
     private router: Router,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public appComp: AppComponent
   ) {}
 
   ionViewWillEnter() {
+    // Load the DT initially
     this.refreshDT();
     // this.sub.add(
     //   this.api

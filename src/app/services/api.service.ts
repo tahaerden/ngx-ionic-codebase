@@ -45,7 +45,6 @@ export class ApiService {
   }
 
   // HttpClient API put() method => Update employee
-  // TODO: implement update
   updateEmployee(id: number, employee: any): Observable<IEmployee> {
     return this.http
       .put<IEmployee>(this.apiURL + '/update/' + id, JSON.stringify(employee))
