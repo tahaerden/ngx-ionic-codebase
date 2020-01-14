@@ -33,7 +33,10 @@
             ],
             "styles": [
               {
-                "input": "src/theme/variables.scss"
+                "input": "src/sass/theme/variables.scss"
+              },
+              {
+                "input": "src/sass/theme/dark.scss"
               },
               {
                 "input": "src/sass/global.scss"

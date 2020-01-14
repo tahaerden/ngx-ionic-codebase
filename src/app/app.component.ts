@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -9,7 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  themeToggle: boolean;
   public appPages = [
     {
       title: 'Home',
@@ -41,5 +42,18 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  ngOnInit() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    this.checkToggle(prefersDark.matches);
+    // Listen for changes to the prefers-color-scheme media query
+    prefersDark.addEventListener('change', e => {
+      this.checkToggle(e.matches);
+    });
+  }
+  checkToggle(shouldCheck: boolean) {
+    document.body.classList.toggle('dark', shouldCheck);
+    this.themeToggle = shouldCheck;
   }
 }

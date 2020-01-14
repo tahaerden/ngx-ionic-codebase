@@ -4,6 +4,15 @@
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
+          <ion-icon slot="end" name="moon"></ion-icon>
+          <ion-label slot="end">
+            Dark Theme
+          </ion-label>
+          <ion-toggle
+            [ngModel]="themeToggle"
+            (ngModelChange)="checkToggle($event)"
+            slot="end"
+          ></ion-toggle>
         </ion-toolbar>
       </ion-header>
       <ion-content>
