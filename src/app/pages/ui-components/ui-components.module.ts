@@ -17,6 +17,7 @@ import { ComponentsModule } from '@components/components.module';
     ComponentsModule,
     UiComponentsPageRoutingModule
   ],
+  entryComponents: [],
   declarations: [UiComponentsPage]
 })
 export class UiComponentsPageModule {}

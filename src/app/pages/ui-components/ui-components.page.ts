@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import {
   ActionSheetController,
   ToastController,
-  AlertController
+  AlertController,
+  PopoverController
 } from '@ionic/angular';
+import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
 
 @Component({
   selector: 'app-ui-components',
@@ -14,7 +16,8 @@ export class UiComponentsPage {
   constructor(
     private actionCtrl: ActionSheetController,
     private toast: ToastController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private popover: PopoverController
   ) {}
 
   ionViewWillEnter() {}
@@ -93,6 +96,17 @@ export class UiComponentsPage {
       })
       .then(alert => {
         alert.present();
+      });
+  }
+  showPopover() {
+    this.popover
+      .create({
+        component: CreateEmployeeComponent,
+        // event: ev,
+        translucent: true
+      })
+      .then(po => {
+        po.present();
       });
   }
 }

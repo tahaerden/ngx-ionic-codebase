@@ -11,10 +11,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from '@components/components.module';
 import { FormsModule } from '@angular/forms';
+import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, CreateEmployeeComponent],
+  entryComponents: [CreateEmployeeComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
