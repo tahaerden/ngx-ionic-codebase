@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
 
 @NgModule({
+  // TODO: Add module for Modals and include it here?
   declarations: [AppComponent, CreateEmployeeComponent],
   entryComponents: [CreateEmployeeComponent],
   imports: [

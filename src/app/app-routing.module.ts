@@ -27,6 +27,7 @@ const routes: Routes = [
       )
   },
   {
+    // check route guards to prevent navigation when form is dirty
     path: 'employee-details/:id',
     loadChildren: () =>
       import('./pages/employee-details/employee-details.module').then(
