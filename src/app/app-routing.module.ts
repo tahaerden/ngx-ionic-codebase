@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -8,12 +9,19 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
     path: 'home',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'employee-list',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/employee-list/employee-list.module').then(
         m => m.EmployeeListPageModule
@@ -21,6 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'ui-components',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/ui-components/ui-components.module').then(
         m => m.UiComponentsPageModule
@@ -29,11 +38,14 @@ const routes: Routes = [
   {
     // check route guards to prevent navigation when form is dirty
     path: 'employee-details/:id',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./pages/employee-details/employee-details.module').then(
         m => m.EmployeeDetailsPageModule
       )
-  }
+  },
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

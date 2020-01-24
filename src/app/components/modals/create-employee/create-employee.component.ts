@@ -36,7 +36,14 @@ export class CreateEmployeeComponent implements OnInit {
               color: 'success',
               header: 'Success',
               message: 'Employee is added successfully.',
-              duration: 5 * 1000
+              duration: 5 * 1000,
+              buttons: [
+                {
+                  icon: 'close-circle',
+                  text: null,
+                  role: 'cancel'
+                }
+              ]
             })
             .then(toast => {
               toast.present();
