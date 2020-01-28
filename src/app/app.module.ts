@@ -11,15 +11,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from '@components/components.module';
 import { FormsModule } from '@angular/forms';
-import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { fakeBackendProvider } from './core/interceptors/fake-backend';
 
 @NgModule({
-  // TODO: Add module for Modals and include it here?
-  declarations: [AppComponent, CreateEmployeeComponent],
-  entryComponents: [CreateEmployeeComponent],
+  declarations: [AppComponent],
+  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
