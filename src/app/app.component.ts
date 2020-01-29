@@ -4,8 +4,6 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { BehaviorSubject } from 'rxjs';
-import { AuthenticationService } from '@services/authentication.service';
-import { User } from '@models/user';
 
 @Component({
   selector: 'app-root',
@@ -37,8 +35,7 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private authenticationService: AuthenticationService
+    private statusBar: StatusBar
   ) {
     this.initializeApp();
   }
