@@ -13,7 +13,6 @@ import { User } from '@models/user';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  currentUser: User;
   themeToggle: boolean;
   private themeToggle$ = new BehaviorSubject(false);
   castThemeToggle$ = this.themeToggle$.asObservable();
@@ -42,9 +41,6 @@ export class AppComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     this.initializeApp();
-    this.authenticationService.currentUser.subscribe(
-      x => (this.currentUser = x)
-    );
   }
 
   initializeApp() {
