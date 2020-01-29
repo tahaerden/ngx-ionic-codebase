@@ -4,7 +4,6 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { BehaviorSubject } from 'rxjs';
-import { Router } from '@angular/router';
 import { AuthenticationService } from '@services/authentication.service';
 import { User } from '@models/user';
 
@@ -40,7 +39,6 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router: Router,
     private authenticationService: AuthenticationService
   ) {
     this.initializeApp();
