@@ -1,9 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from '@services/authentication.service';
 import { Router } from '@angular/router';
-import { User } from '@models/user';
 import { ActionSheetController } from '@ionic/angular';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +9,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  currentUser$: Observable<User>;
   @Input() title: string;
   constructor(
-    private authenticationService: AuthenticationService,
+    public authenticationService: AuthenticationService,
     private router: Router,
     private actionCtrl: ActionSheetController
-  ) {
-    this.currentUser$ = this.authenticationService.currentUser;
-  }
+  ) {}
 
   ngOnInit() {}
 

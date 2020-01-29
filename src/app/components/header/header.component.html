@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button
-        *ngIf="currentUser$ | async as currentUser"
+        *ngIf="authenticationService.currentUser | async as currentUser"
         color="primary"
         (click)="openUserMenu()"
       >
