@@ -44,6 +44,12 @@ const routes: Routes = [
         m => m.EmployeeDetailsPageModule
       )
   },
+  {
+    path: 'posts',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./pages/posts/posts.module').then(m => m.PostsPageModule)
+  },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

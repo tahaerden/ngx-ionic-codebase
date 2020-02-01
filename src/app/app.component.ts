@@ -29,6 +29,11 @@ export class AppComponent implements OnInit {
       title: 'UI Components',
       url: '/ui-components',
       icon: 'book'
+    },
+    {
+      title: 'Posts',
+      url: '/posts',
+      icon: 'logo-instagram'
     }
   ];
 
