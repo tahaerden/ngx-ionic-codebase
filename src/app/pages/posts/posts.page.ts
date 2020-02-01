@@ -1,23 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PostsService } from './posts.service';
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Post } from '@models/post';
 import { ActionSheetController } from '@ionic/angular';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.page.html',
   styleUrls: ['./posts.page.scss']
 })
-export class PostsPage implements OnInit {
-  posts$: Observable<Post[]>;
+export class PostsPage {
+  unsub = new Subject();
+  posts: Post[];
+  limit = 2;
+  page = 0;
   constructor(
     private postsApi: PostsService,
     private actionCtrl: ActionSheetController
   ) {}
 
-  ngOnInit() {
-    this.posts$ = this.postsApi.getPosts();
+  ionViewWillEnter() {
+    this.postsApi
+      .getPosts(this.limit, this.page)
+      .pipe(takeUntil(this.unsub))
+      .subscribe((data: Post[]) => {
+        this.posts = data;
+      });
+  }
+
+  ionViewWillLave() {
+    this.unsub.next();
+    this.unsub.complete();
+  }
+
+  loadData(event: any) {
+    this.page += 1;
+    this.postsApi
+      .getPosts(this.limit, this.page)
+      .pipe(takeUntil(this.unsub))
+      .subscribe((data: Post[]) => {
+        this.posts = [...this.posts, ...data];
+        event.target.complete();
+        // disable infinite scroll when the next page returns empty result
+        if (data.length === 0) {
+          event.target.disabled = true;
+        }
+      });
   }
 
   openActionSheet() {

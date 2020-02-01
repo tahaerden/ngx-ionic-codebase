@@ -15,11 +15,13 @@ export class PostsService {
     private handleError: HandleErrorService
   ) {}
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.apiURL + '/post').pipe(
-      map((data: any) => data.data),
-      retry(1),
-      catchError(this.handleError.showError)
-    );
+  getPosts(limit: number, page: number): Observable<Post[]> {
+    return this.http
+      .get<Post[]>(`${this.apiURL}/post?limit=${limit}&page=${page}`)
+      .pipe(
+        map((data: any) => data.data),
+        retry(1),
+        catchError(this.handleError.showError)
+      );
   }
 }
