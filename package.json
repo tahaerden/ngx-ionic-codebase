@@ -1,12 +1,12 @@
 {
   "name": "test-angular-ionic",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "author": "Taha Erden",
   "homepage": "https://tahaerden.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --no-live-reload",
-    "build": "ng build",
+    "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
