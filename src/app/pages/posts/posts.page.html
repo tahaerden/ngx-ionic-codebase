@@ -1,5 +1,48 @@
 <app-header [title]="'Posts'"></app-header>
 
 <ion-content>
-  <p>posts works</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list *ngIf="(posts$ | async) as posts">
+          <ion-card *ngFor="let post of posts">
+            <ion-item>
+              <ion-avatar slot="start">
+                <ion-img [src]="post.owner.image"></ion-img>
+              </ion-avatar>
+              <ion-label style="display: inline-block;">
+                {{ post.owner?.nameTitle }} {{ post.owner?.firstName }} {{
+                post.owner?.lastName }}
+              </ion-label>
+              <ion-button
+                slot="end"
+                fill="clear"
+                color="primary"
+                shape="round"
+                size="large"
+                (click)="openActionSheet()"
+              >
+                <ion-icon name="more"></ion-icon>
+              </ion-button>
+            </ion-item>
+            <img [src]="post.image" alt="" />
+            <ion-card-header>
+              <ion-card-subtitle>
+                <ion-chip color="primary" *ngFor="let tag of post.tags">
+                  <ion-label>#{{tag}}</ion-label>
+                </ion-chip>
+              </ion-card-subtitle>
+              <!-- <ion-card-title>
+                {{ post.owner?.nameTitle }} {{ post.owner?.firstName }} {{
+                post.owner?.lastName }}</ion-card-title
+              > -->
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ post.message }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
