@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IEmployee, Employee } from '../models/employee';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
-import { ToastController } from '@ionic/angular';
+import { HandleErrorService } from './handle-error.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   apiURL = 'https://dummy.restapiexample.com/api/v1';
-  constructor(private http: HttpClient, private toast: ToastController) {}
+  constructor(
+    private http: HttpClient,
+    private handleError: HandleErrorService
+  ) {}
   // TODO: think about making api service generic
 
   // HttpClient API get() method => Fetch employees list
@@ -22,7 +25,7 @@ export class ApiService {
         })
       ),
       retry(1),
-      catchError(this.handleError)
+      catchError(this.handleError.showError)
     );
   }
 
@@ -33,7 +36,7 @@ export class ApiService {
         return new Employee(res.data);
       }),
       retry(1),
-      catchError(this.handleError)
+      catchError(this.handleError.showError)
     );
   }
 
@@ -41,50 +44,20 @@ export class ApiService {
   createEmployee(employee: any): Observable<any> {
     return this.http
       .post<any>(this.apiURL + '/create', JSON.stringify(employee))
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError.showError));
   }
 
   // HttpClient API put() method => Update employee
   updateEmployee(id: number, employee: any): Observable<IEmployee> {
     return this.http
       .put<IEmployee>(this.apiURL + '/update/' + id, JSON.stringify(employee))
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError.showError));
   }
 
   // HttpClient API delete() method => Delete employee
   deleteEmployee(id: number) {
     return this.http
       .delete<IEmployee>(this.apiURL + '/delete/' + id)
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleError.showError));
   }
-
-  // Error handling
-  handleError = (error: any) => {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    this.toast
-      .create({
-        color: 'danger',
-        header: 'Error',
-        message: errorMessage,
-        duration: 5 * 1000,
-        buttons: [
-          {
-            icon: 'close-circle',
-            text: null,
-            role: 'cancel'
-          }
-        ]
-      })
-      .then(toast => {
-        toast.present();
-      });
-    return throwError(errorMessage);
-  };
 }

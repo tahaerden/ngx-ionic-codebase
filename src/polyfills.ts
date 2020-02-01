@@ -51,7 +51,7 @@
  *  (window as any).__Zone_enable_cross_context_check = true;
  *
  */
-// TODO: apply polyfills
+
 import './zone-flags.ts';
 
 /***************************************************************************************************
