@@ -45,10 +45,22 @@ const routes: Routes = [
       )
   },
   {
-    path: 'posts',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./pages/posts/posts.module').then(m => m.PostsPageModule)
+    path: 'instagram',
+    children: [
+      {
+        path: '',
+        redirectTo: 'posts',
+        pathMatch: 'full'
+      },
+      {
+        path: 'posts',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./pages/instagram/posts/posts.module').then(
+            m => m.PostsPageModule
+          )
+      }
+    ]
   },
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

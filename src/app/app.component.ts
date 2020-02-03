@@ -31,8 +31,8 @@ export class AppComponent implements OnInit {
       icon: 'book'
     },
     {
-      title: 'Posts',
-      url: '/posts',
+      title: 'Instagram',
+      url: '/instagram',
       icon: 'logo-instagram'
     }
   ];
