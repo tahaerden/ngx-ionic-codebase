@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PostsPageRoutingModule } from './posts-routing.module';
+import { SearchPageRoutingModule } from './search-routing.module';
 
-import { PostsPage } from './posts.page';
+import { SearchPage } from './search.page';
 import { ComponentsModule } from '@components/components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentsModule } from '@components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    PostsPageRoutingModule,
+    SearchPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [PostsPage]
+  declarations: [SearchPage]
 })
-export class PostsPageModule {}
+export class SearchPageModule {}

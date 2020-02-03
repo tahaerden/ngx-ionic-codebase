@@ -1,17 +1,11 @@
-<ion-segment class="tabBarWrapper" color="primary">
-  <ion-segment-button routerLink="/xxx">
-    <ion-icon name="home"></ion-icon>
-  </ion-segment-button>
-  <ion-segment-button routerLink="/xxx">
-    <ion-icon name="search"></ion-icon>
-  </ion-segment-button>
-  <ion-segment-button routerLink="/xxx">
-    <ion-icon name="add-circle-outline"></ion-icon>
-  </ion-segment-button>
-  <ion-segment-button routerLink="/xxx">
-    <ion-icon name="heart-empty"></ion-icon>
-  </ion-segment-button>
-  <ion-segment-button routerLink="/xxx">
-    <ion-icon name="person"></ion-icon>
-  </ion-segment-button>
-</ion-segment>
+<div class="tabBarWrapper">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button
+      *ngFor="let tab of tabList"
+      [selected]="currentUrl == tab.url"
+      (click)="goToRoute(tab.url)"
+    >
+      <ion-icon [name]="tab.icon"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</div>

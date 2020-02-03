@@ -59,6 +59,14 @@ const routes: Routes = [
           import('./pages/instagram/posts/posts.module').then(
             m => m.PostsPageModule
           )
+      },
+      {
+        path: 'search',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./pages/instagram/search/search.module').then(
+            m => m.SearchPageModule
+          )
       }
     ]
   },
