@@ -8,6 +8,7 @@ import { PostsPageRoutingModule } from './posts-routing.module';
 
 import { PostsPage } from './posts.page';
 import { ComponentsModule } from '@components/components.module';
+import { InstagramTabBarComponent } from '@components/instagram-tab-bar/instagram-tab-bar.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ComponentsModule } from '@components/components.module';
     PostsPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [PostsPage]
+  declarations: [PostsPage, InstagramTabBarComponent]
 })
 export class PostsPageModule {}
