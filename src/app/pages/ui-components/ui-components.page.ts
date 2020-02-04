@@ -5,7 +5,7 @@ import {
   AlertController,
   PopoverController
 } from '@ionic/angular';
-import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
+import { CreateEmployeeComponent } from '@shared/components/modals/create-employee/create-employee.component';
 
 @Component({
   selector: 'app-ui-components',

@@ -1,22 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
 import { UiComponentsPageRoutingModule } from './ui-components-routing.module';
-
 import { UiComponentsPage } from './ui-components.page';
-import { ComponentsModule } from '@components/components.module';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ComponentsModule,
-    UiComponentsPageRoutingModule
-  ],
+  imports: [SharedModule, UiComponentsPageRoutingModule],
   entryComponents: [],
   declarations: [UiComponentsPage]
 })

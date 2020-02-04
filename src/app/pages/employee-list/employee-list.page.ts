@@ -6,8 +6,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { CreateEmployeeComponent } from '@components/modals/create-employee/create-employee.component';
 import { AppComponent } from 'src/app/app.component';
+import { CreateEmployeeComponent } from '@shared/components/modals/create-employee/create-employee.component';
 
 @Component({
   selector: 'app-list',

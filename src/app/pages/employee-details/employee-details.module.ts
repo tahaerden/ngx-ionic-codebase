@@ -1,22 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
 import { EmployeeDetailsPageRoutingModule } from './employee-details-routing.module';
-
 import { EmployeeDetailsPage } from './employee-details.page';
-import { ComponentsModule } from '@components/components.module';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ComponentsModule,
-    EmployeeDetailsPageRoutingModule
-  ],
+  imports: [SharedModule, EmployeeDetailsPageRoutingModule],
   declarations: [EmployeeDetailsPage]
 })
 export class EmployeeDetailsPageModule {}
