@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
-import { HandleErrorService } from '@services/handle-error.service';
-import { Post } from '@models/post';
+import { HandleErrorService } from '@shared/services/handle-error.service';
+import { Post } from '@shared/models/post';
 
 @Injectable({
   providedIn: 'root'

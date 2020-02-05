@@ -3,7 +3,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { ToastController, ModalController } from '@ionic/angular';
-import { ApiService } from '@services/api.service';
+import { EmployeeService } from '@shared/services/employee.service';
 
 @Component({
   selector: 'app-create-employee',
@@ -14,7 +14,7 @@ export class CreateEmployeeComponent implements OnInit {
   unsub = new Subject();
   constructor(
     private toast: ToastController,
-    private api: ApiService,
+    private api: EmployeeService,
     private modalCtrl: ModalController
   ) {}
 

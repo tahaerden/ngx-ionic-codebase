@@ -1,6 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { ApiService } from '@services/api.service';
-import { Employee } from '@models/employee';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,6 +6,8 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AppComponent } from 'src/app/app.component';
 import { CreateEmployeeComponent } from '@shared/components/modals/create-employee/create-employee.component';
+import { Employee } from '@shared/models/employee';
+import { EmployeeService } from '@shared/services/employee.service';
 
 @Component({
   selector: 'app-list',
@@ -26,7 +26,7 @@ export class EmployeeListPage {
   temp = [];
   selected = [];
   constructor(
-    public api: ApiService,
+    public api: EmployeeService,
     private router: Router,
     public modalCtrl: ModalController,
     public appComp: AppComponent

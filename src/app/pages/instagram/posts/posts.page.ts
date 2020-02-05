@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { PostsService } from './posts.service';
 import { Subject } from 'rxjs';
-import { Post } from '@models/post';
 import { ActionSheetController } from '@ionic/angular';
 import { takeUntil } from 'rxjs/operators';
+import { Post } from '@shared/models/post';
+import { PostsService } from '@shared/services/posts.service';
 
 @Component({
   selector: 'app-posts',

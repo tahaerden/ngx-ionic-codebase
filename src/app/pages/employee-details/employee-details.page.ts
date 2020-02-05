@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ApiService } from '@services/api.service';
 import { Observable, Subject } from 'rxjs';
-import { Employee } from '@models/employee';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
+import { Employee } from '@shared/models/employee';
+import { EmployeeService } from '@shared/services/employee.service';
 
 @Component({
   selector: 'app-employee-details',
@@ -19,7 +19,7 @@ export class EmployeeDetailsPage {
   showUpdateEmployee = false;
 
   constructor(
-    private api: ApiService,
+    private api: EmployeeService,
     private route: ActivatedRoute,
     private toast: ToastController,
     private router: Router

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IEmployee, Employee } from '../models/employee';
 import { Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
-import { HandleErrorService } from './handle-error.service';
+import { HandleErrorService } from '@shared/services/handle-error.service';
+import { Employee, IEmployee } from '@shared/models/employee';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class EmployeeService {
   apiURL = 'https://dummy.restapiexample.com/api/v1';
   constructor(
     private http: HttpClient,
