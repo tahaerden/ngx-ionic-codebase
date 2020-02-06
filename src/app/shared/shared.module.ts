@@ -8,7 +8,6 @@ import { InstagramTabBarComponent } from './components/instagram-tab-bar/instagr
 import { CreateEmployeeComponent } from './components/modals/create-employee/create-employee.component';
 import { AuthenticationService } from './services/authentication.service';
 import { EmployeeService } from './services/employee.service';
-import { HandleErrorService } from './services/handle-error.service';
 import { PostsService } from './services/posts.service';
 
 const modules = [CommonModule, FormsModule, IonicModule];
@@ -18,12 +17,7 @@ const components = [
   InstagramTabBarComponent
 ];
 const modals = [CreateEmployeeComponent];
-const services = [
-  AuthenticationService,
-  EmployeeService,
-  HandleErrorService,
-  PostsService
-];
+const services = [AuthenticationService, EmployeeService, PostsService];
 
 @NgModule({
   imports: [...modules],

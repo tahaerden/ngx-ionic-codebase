@@ -1,39 +1,66 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
-import { environment } from '@environments/environment';
-import { Observable } from 'rxjs';
-import { HandleErrorService } from './handle-error.service';
+import { Observable, throwError } from 'rxjs';
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  constructor(
-    private http: HttpClient,
-    private handleError: HandleErrorService
-  ) {}
-  get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+  constructor(private http: HttpClient, private toast: ToastController) {}
+
+  get(apiUrl: string, path: string): Observable<any> {
     return this.http
-      .get(`${environment.apiUrl}${path}`, { params })
-      .pipe(retry(1), catchError(this.handleError.showError));
+      .get(`${apiUrl}${path}`)
+      .pipe(retry(1), catchError(this.handleError));
   }
 
-  put(path: string, body = {}): Observable<any> {
+  put(apiUrl: string, path: string, body = {}): Observable<any> {
     return this.http
-      .put(`${environment.apiUrl}${path}`, JSON.stringify(body))
-      .pipe(retry(1), catchError(this.handleError.showError));
+      .put(`${apiUrl}${path}`, JSON.stringify(body))
+      .pipe(retry(1), catchError(this.handleError));
   }
 
-  post(path: string, body = {}): Observable<any> {
+  post(apiUrl: string, path: string, body = {}): Observable<any> {
     return this.http
-      .post(`${environment.apiUrl}${path}`, JSON.stringify(body))
-      .pipe(retry(1), catchError(this.handleError.showError));
+      .post(`${apiUrl}${path}`, JSON.stringify(body))
+      .pipe(retry(1), catchError(this.handleError));
   }
 
-  delete(path: string): Observable<any> {
+  delete(apiUrl: string, path: string): Observable<any> {
     return this.http
-      .delete(`${environment.apiUrl}${path}`)
-      .pipe(retry(1), catchError(this.handleError.showError));
+      .delete(`${apiUrl}${path}`)
+      .pipe(retry(1), catchError(this.handleError));
   }
+
+  // Error handling
+  handleError = (error: any) => {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    this.toast
+      .create({
+        color: 'danger',
+        header: 'Error',
+        message: errorMessage,
+        duration: 5 * 1000,
+        buttons: [
+          {
+            icon: 'close-circle',
+            text: null,
+            role: 'cancel'
+          }
+        ]
+      })
+      .then(toast => {
+        toast.present();
+      });
+    return throwError(errorMessage);
+  };
 }
