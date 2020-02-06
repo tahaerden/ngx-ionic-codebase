@@ -5,7 +5,51 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        hello
+        <ion-list>
+          <ion-item>
+            <ion-label>Search for a #hashtag</ion-label>
+            <ion-select
+              [(ngModel)]="selectedTag"
+              (ionChange)="searchPostsByTag()"
+            >
+              <ion-select-option *ngFor="let tag of tags" [value]="tag"
+                >#{{tag}}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="6" offset-md="3">
+        <ion-list>
+          <ion-card *ngFor="let post of posts">
+            <ion-item>
+              <ion-avatar slot="start">
+                <ion-img [src]="post.owner.image"></ion-img>
+              </ion-avatar>
+              <ion-label style="display: inline-block;">
+                {{ post.owner?.nameTitle }} {{ post.owner?.firstName }} {{
+                post.owner?.lastName }}
+              </ion-label>
+            </ion-item>
+            <img [src]="post.image" alt="" />
+            <ion-card-header>
+              <ion-card-subtitle>
+                <ion-chip color="primary" *ngFor="let tag of post.tags">
+                  <ion-label>#{{tag}}</ion-label>
+                </ion-chip>
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ post.message }}</p>
+            </ion-card-content>
+          </ion-card>
+          <ion-infinite-scroll (ionInfinite)="loadData($event)">
+            <ion-infinite-scroll-content loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>

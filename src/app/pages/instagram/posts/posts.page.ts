@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { ActionSheetController } from '@ionic/angular';
 import { takeUntil } from 'rxjs/operators';
 import { Post } from '@shared/models/post';
-import { PostsService } from '@shared/services/posts.service';
+import { InstagramService } from '@shared/services/instagram.service';
 
 @Component({
   selector: 'app-posts',
@@ -16,7 +16,7 @@ export class PostsPage {
   limit = 2;
   page = 0;
   constructor(
-    private postsApi: PostsService,
+    private postsApi: InstagramService,
     private actionCtrl: ActionSheetController
   ) {}
 

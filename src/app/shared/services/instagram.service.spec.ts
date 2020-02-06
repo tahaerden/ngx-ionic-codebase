@@ -1,12 +1,11 @@
 import { TestBed } from '@angular/core/testing';
+import { InstagramService } from './instagram.service';
 
-import { PostsService } from './posts.service';
-
-describe('PostsService', () => {
+describe('InstagramService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PostsService = TestBed.get(PostsService);
+    const service: InstagramService = TestBed.get(InstagramService);
     expect(service).toBeTruthy();
   });
 });

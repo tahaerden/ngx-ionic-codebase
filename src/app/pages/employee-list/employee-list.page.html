@@ -24,12 +24,7 @@
         <ion-list>
           <ion-item>
             <ion-label position="stacked">Search Column</ion-label>
-            <ion-select
-              [(ngModel)]="searchColumn"
-              placeholder="Search Column"
-              okText="OK"
-              cancelText="Dismiss"
-            >
+            <ion-select [(ngModel)]="searchColumn" placeholder="Search Column">
               <ion-select-option value="all">All</ion-select-option>
               <ion-select-option
                 *ngFor="let column of columns"
