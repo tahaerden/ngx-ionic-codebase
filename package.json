@@ -1,6 +1,6 @@
 {
   "name": "test-angular-ionic",
-  "version": "1.17.4",
+  "version": "1.17.5",
   "author": "Taha Erden",
   "homepage": "https://tahaerden.com/",
   "scripts": {
@@ -41,7 +41,7 @@
     "@ionic/angular-toolkit": "^2.1.2",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.11.1",
+    "@types/node": "^13.7.0",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
