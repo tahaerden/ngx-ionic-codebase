@@ -16,7 +16,7 @@ import { EmployeeService } from '@shared/services/employee.service';
 })
 export class EmployeeListPage {
   unsub = new Subject();
-  @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+  @ViewChild(DatatableComponent) table: DatatableComponent;
   columns = [
     { prop: 'name', name: 'Name' },
     { prop: 'salary', name: 'Salary' }
