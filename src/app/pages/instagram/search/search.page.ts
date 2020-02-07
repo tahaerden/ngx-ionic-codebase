@@ -13,8 +13,8 @@ export class SearchPage {
   unsub = new Subject();
   posts: Post[];
   tags: string[];
-  limit = 2;
-  page = 0;
+  limit: number;
+  page: number;
   selectedTag: string;
   constructor(private postsApi: InstagramService) {}
 
@@ -50,7 +50,7 @@ export class SearchPage {
 
   searchPostsByTag() {
     this.posts = [];
-    this.limit = 2;
+    this.limit = 12;
     this.page = 0;
 
     this.postsApi

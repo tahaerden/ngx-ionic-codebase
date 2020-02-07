@@ -1,0 +1,17 @@
+.imgWrapper {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.thumb {
+  width: calc(33.3% - 10px);
+  height: 200px;
+  object-fit: cover;
+  margin: 5px;
+}
+
+// .bottom-div {
+//   height: 20px;
+//   position: absolute;
+//   bottom: -15%;
+// }
