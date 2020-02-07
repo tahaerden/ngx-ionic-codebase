@@ -1,6 +1,6 @@
 {
   "name": "test-angular-ionic",
-  "version": "1.17.3",
+  "version": "1.17.4",
   "author": "Taha Erden",
   "homepage": "https://tahaerden.com/",
   "scripts": {
@@ -30,7 +30,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "~0.801.2",
+    "@angular-devkit/architect": "~0.900.1",
     "@angular-devkit/build-angular": "~0.900.1",
     "@angular-devkit/core": "~9.0.1",
     "@angular-devkit/schematics": "~9.0.1",
