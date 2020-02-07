@@ -22,7 +22,7 @@ const services = [AuthenticationService, EmployeeService, InstagramService];
 @NgModule({
   imports: [...modules],
   declarations: [...components, ...modals],
-  entryComponents: [...modals],
+  // entryComponents: [...modals],
   exports: [...modules, ...components],
   providers: [...services]
 })

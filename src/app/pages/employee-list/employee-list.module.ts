@@ -15,7 +15,7 @@ import { SharedModule } from '@shared/shared.module';
       }
     ])
   ],
-  declarations: [EmployeeListPage],
-  entryComponents: []
+  declarations: [EmployeeListPage]
+  // entryComponents: []
 })
 export class EmployeeListPageModule {}

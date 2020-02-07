@@ -5,7 +5,7 @@ import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   imports: [SharedModule, UiComponentsPageRoutingModule],
-  entryComponents: [],
+  // entryComponents: [],
   declarations: [UiComponentsPage]
 })
 export class UiComponentsPageModule {}
