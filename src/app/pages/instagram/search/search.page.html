@@ -22,12 +22,11 @@
     </ion-row>
     <ion-row>
       <ion-col class="imgWrapper ion-align-items-center">
-        <img
+        <div
           class="thumb"
           *ngFor="let post of posts"
-          [src]="post.image"
-          alt=""
-        />
+          [style.background-image]="'url('+ post.image +')'"
+        ></div>
 
         <ion-infinite-scroll (ionInfinite)="loadData($event)">
           <ion-infinite-scroll-content loadingText="Loading more data...">

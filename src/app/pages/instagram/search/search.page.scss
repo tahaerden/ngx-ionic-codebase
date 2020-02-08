@@ -1,13 +1,16 @@
-.imgWrapper {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
 .thumb {
-  width: calc(33.3% - 10px);
-  height: 200px;
-  object-fit: cover;
-  margin: 5px;
+  display: inline-block;
+  width: calc(33.3% - 2px);
+  margin: 1px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  &:after {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
 }
 
 // .bottom-div {
