@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { Post } from '@shared/models/post';
 import { takeUntil } from 'rxjs/operators';
 import { InstagramService } from '@shared/services/instagram.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +17,7 @@ export class SearchPage {
   limit: number;
   page: number;
   selectedTag: string;
-  constructor(private postsApi: InstagramService) {}
+  constructor(private postsApi: InstagramService, private router: Router) {}
 
   ionViewWillEnter() {
     this.postsApi
@@ -59,5 +60,9 @@ export class SearchPage {
       .subscribe((data: []) => {
         this.posts = data;
       });
+  }
+
+  showPostDetails(id: number) {
+    this.router.navigate(['employee-details', id]);
   }
 }

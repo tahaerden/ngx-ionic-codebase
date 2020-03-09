@@ -5,6 +5,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  cursor: pointer;
+  transition: all 0.3 ease-out;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   &:after {
     content: '';

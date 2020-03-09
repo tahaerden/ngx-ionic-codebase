@@ -17,6 +17,25 @@ export class InstagramService {
       .pipe(map((data: any) => data.data));
   }
 
+  getPost(id: number): Observable<Post[]> {
+    return this.api
+      .get(environment.apiUrl.instagramApi, `/post/${id}`)
+      .pipe(map((data: any) => data.data));
+  }
+
+  getPostsByUser(
+    userID: number,
+    limit: number,
+    page: number
+  ): Observable<Post[]> {
+    return this.api
+      .get(
+        environment.apiUrl.instagramApi,
+        `/user/${userID}/post?limit=${limit}&page=${page}`
+      )
+      .pipe(map((data: any) => data.data));
+  }
+
   getTags(): Observable<[]> {
     return this.api
       .get(environment.apiUrl.instagramApi, '/tag')
@@ -28,6 +47,15 @@ export class InstagramService {
       .get(
         environment.apiUrl.instagramApi,
         `/tag/${tag}/post?limit=${limit}&page=${page}`
+      )
+      .pipe(map((data: any) => data.data));
+  }
+
+  getCommentsByPost(id: number, limit: number, page: number): Observable<[]> {
+    return this.api
+      .get(
+        environment.apiUrl.instagramApi,
+        `/post/${id}/comment?limit=${limit}&page=${page}`
       )
       .pipe(map((data: any) => data.data));
   }

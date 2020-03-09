@@ -26,6 +26,7 @@
           class="thumb"
           *ngFor="let post of posts"
           [style.background-image]="'url('+ post.image +')'"
+          (click)="showPostDetails(post.id)"
         ></div>
 
         <ion-infinite-scroll (ionInfinite)="loadData($event)">

@@ -36,7 +36,6 @@ const routes: Routes = [
       )
   },
   {
-    // check route guards to prevent navigation when form is dirty
     path: 'employee-details/:id',
     canActivate: [AuthGuard],
     loadChildren: () =>
@@ -58,6 +57,22 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/instagram/posts/posts.module').then(
             m => m.PostsPageModule
+          )
+      },
+      {
+        path: 'post-details/:id',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./pages/instagram/post-details/post-details.module').then(
+            m => m.PostDetailsPageModule
+          )
+      },
+      {
+        path: 'comments/:id',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./pages/instagram/comments/comments.module').then(
+            m => m.CommentsPageModule
           )
       },
       {
